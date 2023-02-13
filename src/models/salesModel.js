@@ -46,10 +46,20 @@ const insertSaleDetails = async (saleId, productId, quantity) => connection.exec
   [saleId, productId, quantity],
 );
 
+const getSaleInfo = async (id) => {
+  const [result] = await connection.execute(
+    'SELECT * FROM StoreManager.sales WHERE id = ?;',
+    [id],
+  );
+
+  return result;
+};
+
 module.exports = {
   getSalesDetails,
   getSalesById,
   findById,
   insertNewSale,
   insertSaleDetails,
+  getSaleInfo,
 };

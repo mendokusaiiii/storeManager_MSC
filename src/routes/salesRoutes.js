@@ -9,5 +9,6 @@ const router = express.Router();
 
 router.post('/', validateSchemaSale, salesController.saleRegistration);
 router.get('/', salesController.getSalesDetails);
+router.get('/:id', salesController.getSalesById);
 
 module.exports = router;
