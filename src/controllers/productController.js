@@ -30,9 +30,15 @@ const getProductUpdate = async (req, res) => {
   res.status(status).json(response);
 };
 
+const getProductDeleted = async (req, res) => {
+  const { status, response } = await productServices.getProductDeleted(req);
+  res.status(status).json(response);
+};
+
 module.exports = {
   getProductId,
   getProductList,
   getNewProduct,
   getProductUpdate,
+  getProductDeleted,
 };

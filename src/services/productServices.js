@@ -32,9 +32,20 @@ const getProductUpdate = async (req) => {
   return result && { status: 200, response: { name, id } };
 };
 
+const getProductDeleted = async (req) => {
+  const { id } = req.params;
+  const productDel = await productModel.getProductById(id);
+  if (productDel === undefined) {
+    return { status: 404, response: { message: 'Product not found' } };
+  }
+  const result = await productModel.deleteProduct(id);
+  return result && { status: 204 };
+};
+
 module.exports = {
   getProductList,
   getProductId,
   getNewProduct,
   getProductUpdate,
+  getProductDeleted,
 };
