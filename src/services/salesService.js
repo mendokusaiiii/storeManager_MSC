@@ -38,8 +38,18 @@ const getSalesById = async (id) => {
   return { type: null, message: result };
 };
 
+const getDeletedSaleById = async (req) => {
+  const { id } = req.params;
+  const getIdToDelete = await salesModel.getSalesById(id);
+  console.log(getIdToDelete);
+  if (getIdToDelete.length === 0) return { status: 404, response: { message: 'Sale not found' } };
+  await salesModel.deleteSaleById(id);
+  return { status: 204 };
+};
+
 module.exports = {
   saleRegistration,
   getSalesDetails,
   getSalesById,
+  getDeletedSaleById,
 };

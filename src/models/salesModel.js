@@ -20,7 +20,8 @@ const getSalesById = async (id) => {
     ON details.sale_id = sales_date.id
     WHERE sale_id = ?;`,
     [id],
-  );
+    );
+    console.log(id);
 
   return camelize(result);
 };
@@ -55,6 +56,12 @@ const getSaleInfo = async (id) => {
   return result;
 };
 
+const deleteSaleById = async (id) => {
+  const deleteSale = 'DELETE FROM StoreManager.sales WHERE id = ?';
+  const [result] = await connection.execute(deleteSale, [id]);
+  return result;
+};
+
 module.exports = {
   getSalesDetails,
   getSalesById,
@@ -62,4 +69,5 @@ module.exports = {
   insertNewSale,
   insertSaleDetails,
   getSaleInfo,
+  deleteSaleById,
 };

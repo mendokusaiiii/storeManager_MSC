@@ -26,8 +26,14 @@ const getSalesById = async (req, res) => {
   return res.status(200).json(message);
 };
 
+const getDeletedSaleById = async (req, res) => {
+  const { status, response } = await salesService.getDeletedSaleById(req);
+  res.status(status).json(response);
+};
+
 module.exports = {
   saleRegistration,
   getSalesDetails,
   getSalesById,
+  getDeletedSaleById,
 };
