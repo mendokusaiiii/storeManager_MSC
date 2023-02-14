@@ -21,8 +21,20 @@ const getNewProduct = async (name) => {
   return getProductId(productId);
 };
 
+const getProductUpdate = async (req) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const updateProduct = await productModel.getProductById(id);
+  if (updateProduct === undefined) {
+    return { status: 404, response: { message: 'Product not found' } };
+  }
+  const result = await productModel.updateProduct(name, id);
+  return result && { status: 200, response: { name, id } };
+};
+
 module.exports = {
   getProductList,
   getProductId,
   getNewProduct,
+  getProductUpdate,
 };
