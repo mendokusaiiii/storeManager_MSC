@@ -36,8 +36,8 @@ const getProductDeleted = async (req, res) => {
 };
 
 module.exports = {
-  getProductId,
   getProductList,
+  getProductId,
   getNewProduct,
   getProductUpdate,
   getProductDeleted,
