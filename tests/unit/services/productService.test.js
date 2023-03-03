@@ -19,13 +19,17 @@ const {
 const  productsModel  = require('../../../src/models/productsModel');
 
 describe('Testando a productServices', () => {
-	describe('Testa se recupera toda a lista de produtos', () => {
+  describe('Testa se recupera toda a lista de produtos', () => {
+    afterEach(sinon.restore);
+    
     it('Testa se retorna uma lista completa de arrays', async () => {
       sinon.stub(productsModel, 'productList').resolves(getAllProductList);
       await getProductList();
 		})
 	})
-	describe('Testa se retorna apenas um objeto', () => {
+  describe('Testa se retorna apenas um objeto', () => {
+    afterEach(sinon.restore);
+    
     it('Testa se retorna um objeto com um unico produto', async () => {
       const req = {
         params: { id: 1 },
@@ -44,14 +48,17 @@ describe('Testando a productServices', () => {
 		})
   })
   describe('Testa se é possivel inserir um produto', () => {
+     afterEach(sinon.restore);
     it('Testa se retorna: { status: 201, response: { ...request, id } }', async () => {
-      const req = {
+       const req = {
         body: { name: 'Product X' },
       };
 
       sinon.stub(productsModel, 'productInsert').resolves(1);
-      await getNewProduct(req);
+      await getNewProduct(1);
 		})
+    
+    
     it('Testa se retorna: { status: 400, response: { message: ""name" is required" }', async () => {
       const req = {
         body: { name: '' },
@@ -75,9 +82,11 @@ describe('Testando a productServices', () => {
 
       sinon.stub(productsModel, 'productInsert').resolves(1);
       await getNewProduct(req);
-		})
+    })
   })
   describe('Testa se é possivel atualizar um produto', () => {
+    afterEach(sinon.restore);
+    
     it('Success', async () => {
       sinon.stub(productsModel, 'getProductById').resolves({ id: 1, name: 'Current name' });
       sinon.stub(productsModel, 'updateProduct').resolves({ affectedRows: 1 });
@@ -90,6 +99,8 @@ describe('Testando a productServices', () => {
     })
   })
   describe('Testa se deleta um produto', () => {
+    afterEach(sinon.restore);
+    
     it('Testa se tem sucesso ao deletar ', async () => {
       sinon.stub(productsModel, 'getProductById').resolves({ id: 1, name: 'Current name' });
       sinon.stub(productsModel, 'deleteProduct').resolves({ affectedRows: 1 });
@@ -101,19 +112,4 @@ describe('Testando a productServices', () => {
       await getProductDeleted({ params: { id: 1 } })
     })
   })
-  // describe('getAllSearchProduct', () => {
-  //   it('Success All Search', async () => {
-  //     sinon
-  //       .stub(productsModel, 'getAllByQuery')
-  //       .resolves([ { id: 1, name: "Nome 2" } ]);
-  //     await getAllSearchProduct('Nome')
-  //   })
-  //   it('Success All', async () => {
-  //     sinon
-  //       .stub(productsModel, 'getAll')
-  //       .resolves([ { id: 1, name: "Nome 2" }, { id: 2, name: "Nome 1" } ]);
-  //     await getAllSearchProduct('')
-  //   })
-  // })
-  afterEach(sinon.restore);
 })
