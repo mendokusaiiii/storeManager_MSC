@@ -76,42 +76,42 @@ describe('Testando a productController', () => {
       //     res.json = sinon.stub().returns();
       //     sinon
       //       .stub(productService, 'getNewProduct')
-      //       .resolves({ status: 201, response: { ...req.body, id: 1 } });
+      //       .resolves({ type: null, message: { ...req.body, id: 1 } });
 
       //     await getNewProduct(req, res);
       // 	})
       // })
-      // describe('Testa se é possivel atualizar um produto', () => {
-      //   afterEach(sinon.restore);
+      describe('Testa se é possivel atualizar um produto', () => {
+        afterEach(sinon.restore);
     
-      //   it('Testa se retorna um status 200 com a resposta: { name, id } }', async () => {
-      //     const res = {};
-      //     const req = {};
+        it('Testa se retorna um status 200 com a resposta: { name, id } }', async () => {
+          const res = {};
+          const req = {};
 
-      //     res.status = sinon.stub().returns(res);
-      //     res.json = sinon.stub().returns();
-      //     sinon
-      //       .stub(productService, 'getProductUpdate')
-      //       .resolves({ status: 200, response: { name: 'XXX', id: 1 } });
+          res.status = sinon.stub().returns(res);
+          res.json = sinon.stub().returns();
+          sinon
+            .stub(productService, 'getProductUpdate')
+            .resolves({ status: 200, response: { name: 'XXX', id: 1 } });
 
-      //     await getProductUpdate(req, res);
-      // 	})
-      // })
-      // describe('Testa se deleta um produto', () => {
-      //   afterEach(sinon.restore);
+          await getProductUpdate(req, res);
+      	})
+      })
+      describe('Testa se deleta um produto', () => {
+         afterEach(sinon.restore);
     
-      //   it('Testa se retorna um status 204 ao deletar um produto', async () => {
-      //     const res = {};
-      //     const req = {};
+        it('Testa se retorna um status 204 ao deletar um produto', async () => {
+          const res = {};
+         const req = {};
 
-      //     res.status = sinon.stub().returns(res);
-      //     res.json = sinon.stub().returns();
-      //     sinon
-      //       .stub(productService, 'getProductDeleted')
-      //       .resolves({ status: 204 });
+          res.status = sinon.stub().returns(res);
+          res.json = sinon.stub().returns();
+          sinon
+            .stub(productService, 'getProductDeleted')
+          .resolves({ status: 204 });
 
-      //     await getProductDeleted(req, res);
-      // 	})
+         await getProductDeleted(req, res);
+      	})
     });
 	// describe('getAllSearchProduct', () => {
   //   it('1', async () => {
@@ -128,5 +128,4 @@ describe('Testando a productController', () => {
 
   //     await getAllSearchProduct(req, res);
 	// 	})
-	// });
-    
+	 });
