@@ -47,43 +47,44 @@ describe('Testando a productServices', () => {
       await getProductId(req);
 		})
   })
-  // describe('Testa se é possivel inserir um produto', () => {
-  //    afterEach(sinon.restore);
-  //   it('Testa se retorna: { status: 201, response: { ...request, id } }', async () => {
-  //      const req = {
-  //       body: { name: 'Product X' },
-  //     };
+  describe('Testa se é possivel inserir um produto', () => {
+     afterEach(sinon.restore);
+    it('Testa se retorna: { status: 201, response: { ...request, id } }', async () => {
+       const req = {
+        body: { name: 'Product X' },
+      };
 
-  //     sinon.stub(productsModel, 'productInsert').resolves(1);
-  //     await getNewProduct(1);
-	// 	})
+      sinon.stub(productsModel, 'productInsert').resolves(1);
+      await getNewProduct(1);
+      
+		})
     
     
-  //   it('Testa se retorna: { status: 400, response: { message: ""name" is required" }', async () => {
-  //     const req = {
-  //       body: { name: '' },
-  //     };
+    it('Testa se retorna: { status: 400, response: { message: ""name" is required" }', async () => {
+      const req = {
+        body: { name: '' },
+      };
 
-  //     sinon.stub(productsModel, 'productInsert').resolves(1);
-  //     await getNewProduct(req);
-	// 	})
-  //   it('Testa se retorna: { status: 400, response: { message: ""name" is required" }', async () => {
-  //     const req = {
-  //       body: { xxxxx: 'Product X' },
-  //     };
+      sinon.stub(productsModel, 'productInsert').resolves(1);
+      await getNewProduct(req);
+		})
+    it('Testa se retorna: { status: 400, response: { message: ""name" is required" }', async () => {
+      const req = {
+        body: { xxxxx: 'Product X' },
+      };
 
-  //     sinon.stub(productsModel, 'productInsert').resolves(1);
-  //     await getNewProduct(req);
-	// 	})
-  //   it('Testa se retorna: { status: 422, response: { message: ""name" length must be at least 5 characters long" }', async () => {
-  //     const req = {
-  //       body: { name: 'P' },
-  //     };
+      sinon.stub(productsModel, 'productInsert').resolves(1);
+      await getNewProduct(req);
+		})
+    it('Testa se retorna: { status: 422, response: { message: ""name" length must be at least 5 characters long" }', async () => {
+      const req = {
+        body: { name: 'P' },
+      };
 
-  //     sinon.stub(productsModel, 'productInsert').resolves(1);
-  //     await getNewProduct(req);
-  //   })
-  // })
+      sinon.stub(productsModel, 'productInsert').resolves(1);
+      await getNewProduct(req);
+    })
+  })
   describe('Testa se é possivel atualizar um produto', () => {
     afterEach(sinon.restore);
     
