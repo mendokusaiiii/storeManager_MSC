@@ -63,24 +63,24 @@ describe('Testando a productController', () => {
           expect(res.json).to.have.been.calledWith(getProduct);
         });
       });
-      // describe('Testa se é possivel inserir um produto', () => {
-      //   afterEach(sinon.restore);
+      describe('Testa se é possivel inserir um produto', () => {
+        afterEach(sinon.restore);
     
-      // 	it('Testa se retorna um status 201 com a resposta: { request, id }', async () => {
-      //     const res = {};
-      //     const req = {
-      //       name: 'Product X'
-      //     };
+      	it('Testa se retorna um status 201 com a resposta: { request, id }', async () => {
+          const res = {};
+          const req = {
+            body: { name: 'Product X' }
+          };
 
-      //     res.status = sinon.stub().returns(res);
-      //     res.json = sinon.stub().returns();
-      //     sinon
-      //       .stub(productService, 'getNewProduct')
-      //       .resolves({ type: null, message: { ...req.body, id: 1 } });
+          res.status = sinon.stub().returns(res);
+          res.json = sinon.stub().returns();
+          sinon
+            .stub(productService, 'getNewProduct')
+            .resolves({ type: null, message: req });
 
-      //     await getNewProduct(req, res);
-      // 	})
-      // })
+          await getNewProduct(req, res);
+      	})
+      })
       describe('Testa se é possivel atualizar um produto', () => {
         afterEach(sinon.restore);
     
@@ -113,19 +113,5 @@ describe('Testando a productController', () => {
          await getProductDeleted(req, res);
       	})
     });
-	// describe('getAllSearchProduct', () => {
-  //   it('1', async () => {
-  //     const res = {};
-  //     const req = {
-  //       query: 'Nome'
-  //     };
-
-  //     res.status = sinon.stub().returns(res);
-  //     res.json = sinon.stub().returns();
-  //     sinon
-  //       .stub(productService, 'getAllSearchProduct')
-  //       .resolves({ status: 200, response: [ { id: 1, name: "Nome 2" }, { id: 2, name: "Nome 1" } ] });
-
-  //     await getAllSearchProduct(req, res);
 	// 	})
 	 });
