@@ -47,9 +47,25 @@ const getDeletedSaleById = async (req) => {
   return { status: 204 };
 };
 
+const updatedSale = async (req) => {
+  const { id } = req.params;
+  const arrSales = req.body;
+  const saleProductExist = await salesModel.getSalesById(id);
+  console.log('saleProductExist', saleProductExist);
+  if (saleProductExist.length === 0) {
+    return { status: 404, response: { message: 'Sale not found' } };
+  }
+
+  await salesModel.deleteSaleProducts(id);
+  await salesModel.updatedSale(arrSales, id);
+
+  return { status: 200, response: { saleId: id, itemsUpdated: arrSales } };
+};
+
 module.exports = {
   saleRegistration,
   getSalesDetails,
   getSalesById,
   getDeletedSaleById,
+  updatedSale,
 };

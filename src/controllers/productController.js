@@ -35,10 +35,17 @@ const getProductDeleted = async (req, res) => {
   res.status(status).json(response);
 };
 
+const getSearchProduct = async (req, res) => {
+  const { q } = req.query;
+  const { status, response } = await productServices.getSearchProduct(q);
+  res.status(status).json(response);
+};
+
 module.exports = {
   getProductList,
   getProductId,
   getNewProduct,
   getProductUpdate,
   getProductDeleted,
+  getSearchProduct,
 };

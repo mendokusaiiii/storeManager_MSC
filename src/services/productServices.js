@@ -42,10 +42,17 @@ const getProductDeleted = async (req) => {
   return result && { status: 204 };
 };
 
+const getSearchProduct = async (search) => {
+  if (search === '') return getProductList();
+  const products = await productModel.searchByQuery(search);
+  return { status: 200, response: products };
+};
+
 module.exports = {
   getProductList,
   getProductId,
   getNewProduct,
   getProductUpdate,
   getProductDeleted,
+  getSearchProduct,
 };
